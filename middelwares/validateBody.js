@@ -4,7 +4,7 @@ const validateBody = (shema, message) => {
   const func = (req, res, next) => {
     const { error } = shema.validate(req.body);
     if (error) {
-      next(HttpError(400, message));
+      next(HttpError(400, error.message));
     }
     next();
   }
