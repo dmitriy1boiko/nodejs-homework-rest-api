@@ -32,7 +32,10 @@ const userSchema = new Schema({
     type: String,
     default: '',
   },
-  
+  avatarURL: {
+    type: String,
+    required: false,
+  },
 } , {versionKey:false, timestamps:true});
 
 userSchema.post('save', handleMongooseError);
