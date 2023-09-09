@@ -1,5 +1,6 @@
 const express = require('express');
 const ctrl = require('../../controllers/auth')
+// const superagent = require('superagent');
 
 const {validateBody, authenticate, upload} = require('../../middelwares');
 
@@ -10,6 +11,14 @@ const router = express.Router();
 router.post("/register", validateBody(schemas.registerSchema), ctrl.register);
 
 router.post("/login", validateBody(schemas.loginSchema), ctrl.login);
+
+router.get('/verify/:verificationToken', ctrl.verifyUserEmail);
+
+router.post(
+  '/verify',
+  validateBody(schemas.userEmailSchema),
+  ctrl.resendVerifyEmail
+);
 
 router.get("/current", authenticate, ctrl.getCurrent);
 
